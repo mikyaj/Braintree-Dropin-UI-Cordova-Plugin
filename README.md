@@ -6,7 +6,7 @@ cordova plugin add https://github.com/mikyaj/Braintree-Dropin-UI-Cordova-Plugin.
 ##How to use?
 ```sh
 window.plugins.btreeplugin.init(function (sucessData) {
-          $scope.addPaymentMethod(sucessData);
+         //succes part goes here
         }, function (errorData) {
         }, [
           {
