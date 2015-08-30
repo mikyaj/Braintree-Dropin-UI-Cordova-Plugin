@@ -1,0 +1,73 @@
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="com.pdg.plugins.braintree"
+        version="0.0.1">
+    
+    <name>Braintree PhoneGap</name>
+    
+    <description>
+        Braintree PhoneGap Plugin for Android and iOS.
+    </description>
+    
+    <author>Kun Le</author>
+    
+    <license>MIT</license>
+    
+    <keywords>Braintree</keywords>
+    
+    <repo>https://github.com/kunlqt/Braintree-PhoneGap-Plugin.git</repo>
+    
+    <issue>https://github.com/kunlqt/Braintree-PhoneGap-Plugin/issues</issue>
+    
+    <engines>
+        <engine name="cordova" version=">=3.3.0"/>
+    </engines>
+    
+    <js-module src="www/BrainTreePayment.js" name="BrainTreePayment">
+        <clobbers target="btreeplugin" />
+    </js-module>
+    
+    <!-- ios -->
+    <platform name="ios">
+        
+        <config-file target="config.xml" parent="/*">
+            <feature name="BraintreePlugin">
+                <param name="ios-package" value="iOSBraintreePhoneGapPlugin" />
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/iOSBraintreePhoneGapPlugin.h"/>
+        <source-file src="src/ios/iOSBraintreePhoneGapPlugin.m"/>
+        <header-file src="src/ios/UUIDShortener.h"/>
+        <source-file src="src/ios/UUIDShortener.m"/>
+        <header-file src="src/ios/FDKeychain.h"/>
+        <header-file src="src/ios/FDNullOrEmpty.h"/>
+        <source-file src="src/ios/FDKeychain.m"/>
+        
+        
+    </platform>
+
+    <!-- android -->
+    <platform name="android">
+
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="BraintreePlugin">
+                <param name="android-package" value="com.pdg.plugins.braintree.BraintreePlugin" />
+            </feature>
+        </config-file>
+        <!--<source-file src="src/android/theme/themes.xml" target-dir="res/values"/>-->
+        <source-file src="src/android/BraintreePlugin.java" target-dir="src/com/pdg/plugins/braintree" />
+        <framework src="src/android/build.gradle" custom="true" type="gradleReference" />
+
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+            <uses-permission android:name="android.permission.INTERNET"/>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <activity android:name="com.braintreepayments.api.dropin.BraintreePaymentActivity" android:theme="@android:style/Theme.Holo.Light"/>
+        </config-file>
+
+    </platform>
+</plugin>

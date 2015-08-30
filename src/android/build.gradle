@@ -1,0 +1,10 @@
+dependencies {
+	compile 'com.braintreepayments.api:braintree:1.+'
+}
+
+android {
+  packagingOptions {
+    exclude 'META-INF/NOTICE'
+    exclude 'META-INF/LICENSE'
+  }
+}
